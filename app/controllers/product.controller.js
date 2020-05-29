@@ -9,7 +9,7 @@ let getPageData = function (url) {
         console.log(url)
         request(url, function (error, response, html) {
             if (!error) {
-                
+
                 console.log('rrrrrrr')
                 var $ = cheerio.load(html);
                 $('.s-result-item').each(function (i, element) {
@@ -36,14 +36,15 @@ let getPageData = function (url) {
                         }
                     })
 
-                    if (!$('.a-pagination a-last').hasClass('a-disabled')) {
-                        let newUrl = $('.a-pagination a-last a').attr('href')
-                        getPageData(newUrl)
-                    } else {
-                        return true
-                    }
+                    // if (!$('.a-pagination a-last').hasClass('a-disabled')) {
+                    //     let newUrl = $('.a-pagination a-last a').attr('href')
+                    //     getPageData(newUrl)
+                    // } else {
+                    //     return true
+                    // }
+                    return true;
                 })
-                
+
             } else {
                 return false
             }
@@ -55,10 +56,24 @@ module.exports.scrap = async (req, res) => {
 
     // url = 'http://me.mauliksompura.in/generic-resume';
     url = 'https://www.amazon.com/s?srs=5286335011';
-    
-    await getPageData(url).then(function() {
+
+    await getPageData(url).then(function () {
         res.status(200).send({ success: true, result: 'Scrapped' })
-    }).catch(function() {
+    }).catch(function () {
         res.status(400).send({ success: false })
+    })
+}
+
+module.exports.list = (req, res) => {
+    product.find({}, (err, data) => {
+        if (err) {
+            res.status(400).send({ success: false, result: { message: err.message } })
+        } else {
+            if (data.length > 0) {
+                res.status(200).send({ success: true, result: { message: 'Product List', data: data } })
+            } else {
+                res.status(404).send({ success: false, result: { message: 'Products not found' } })
+            }
+        }
     })
 }

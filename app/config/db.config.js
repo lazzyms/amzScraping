@@ -1,3 +1,3 @@
 module.exports = {
-    url: "mongodb://localhost:27017/amazonProducts"
+    url: "mongodb+srv://root:root@cluster0-knulf.mongodb.net/test?retryWrites=true&w=majority"
 };

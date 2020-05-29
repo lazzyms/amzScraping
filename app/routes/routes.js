@@ -3,6 +3,7 @@ module.exports = app => {
     var router = require("express").Router();
 
     router.get('/', product.scrap)
+    router.get('/list', product.list)
 
     app.use('/', router)
 }
