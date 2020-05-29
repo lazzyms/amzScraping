@@ -36,13 +36,13 @@ let getPageData = function (url) {
                         }
                     })
 
-                    // if (!$('.a-pagination a-last').hasClass('a-disabled')) {
-                    //     let newUrl = $('.a-pagination a-last a').attr('href')
-                    //     getPageData(newUrl)
-                    // } else {
-                    //     return true
-                    // }
-                    return true;
+                    if (!$('.a-pagination a-last').hasClass('a-disabled')) {
+                        let newUrl = $('.a-pagination a-last a').attr('href')
+                        getPageData(newUrl)
+                    } else {
+                        return true
+                    }
+                    // return true;
                 })
 
             } else {
@@ -54,7 +54,6 @@ let getPageData = function (url) {
 
 module.exports.scrap = async (req, res) => {
 
-    // url = 'http://me.mauliksompura.in/generic-resume';
     url = 'https://www.amazon.com/s?srs=5286335011';
 
     await getPageData(url).then(function () {
