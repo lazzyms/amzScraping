@@ -40,13 +40,13 @@ let getPageData = function (url) {
                         let newUrl = $('.a-pagination a-last a').attr('href')
                         getPageData(newUrl)
                     } else {
-                        return true
+                        resolve()
                     }
                     // return true;
                 })
 
             } else {
-                return false
+                reject()
             }
         })
     })
