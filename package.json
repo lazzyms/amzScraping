@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "pm2 start index.js"
   },
   "author": "maulik",
   "license": "ISC",
@@ -16,7 +16,7 @@
     "mongoose": "^5.9.16",
     "request": "latest",
     "cheerio": "latest",
-    "nodemon": "latest"
+    "pm2": "latest"
   },
   "devDependencies": {},
   "engines": {
