@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "start": "nodemon index.js"
   },
   "author": "maulik",
   "license": "ISC",
@@ -15,7 +15,11 @@
     "express": "^4.17.1",
     "mongoose": "^5.9.16",
     "request": "latest",
-    "cheerio": "latest"
+    "cheerio": "latest",
+    "nodemon": "latest"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "engines": {
+    "node": "10.x"
+  }
 }
