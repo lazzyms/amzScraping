@@ -27,24 +27,32 @@ let getPageData = function (url) {
                     }
 
                     console.log(newProduct)
-
-                    product.update({ name: name }, newProduct, { upsert: true }, (err, data) => {
-                        if (err) {
-                            console.log(err)
-                        } else {
-                            console.log('Product - ' + name + ' added')
-                        }
-                    })
-
-                    if (!$('.a-pagination a-last').hasClass('a-disabled')) {
-                        let newUrl = $('.a-pagination a-last a').attr('href')
-                        getPageData(newUrl)
+                    if(name){
+                        product.updateOne({ name: name }, newProduct, { upsert: true }, (err, data) => {
+                            if (err) {
+                                console.log(err)
+                            } else {
+                                console.log('Product - ' + name + ' added')
+                            }
+                        })
+                    }
+                })
+                if (!$('.a-pagination .a-last').hasClass('.a-disabled')) {
+                    let param = $('.a-pagination .a-last a').attr('href')
+                    if(param) {
+                        let newUrl = 'https://www.amazon.com' + param
+                        console.log('next',newUrl)
+                        getPageData(newUrl).then(function () {
+                            resolve()
+                        }).catch(function () {
+                            reject()
+                        })
                     } else {
                         resolve()
                     }
-                    // return true;
-                })
-
+                } else {
+                    resolve()
+                }
             } else {
                 reject()
             }
